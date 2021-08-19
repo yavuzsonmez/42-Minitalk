@@ -6,15 +6,13 @@
 #    By: ysonmez <ysonmez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/19 11:02:47 by ysonmez           #+#    #+#              #
-#    Updated: 2021/08/19 19:16:21 by ysonmez          ###   ########.fr        #
+#    Updated: 2021/08/19 19:29:59 by ysonmez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CLIENT			=		client
 
 SERVER			=		server
-
-MINITALK		=		minitalk
 
 SRCS_SERVER		=		server.c \
 
@@ -30,24 +28,14 @@ CFLAGS			=		-Wall -Wextra -Werror
 
 RM				=		rm -f
 
-$(MINITALK):
+$(CLIENT) $(SERVER):
 			make bonus -C ./libft
 			$(CC) $(CFLAGS) -c $(SRCS_SERVER)
 			$(CC) $(CFLAGS) -c $(SRCS_CLIENT)
-			$(CC) $(CFLAGS) $(OBJS_SERVER) libft/libft.a -o $(SERVER)
 			$(CC) $(CFLAGS) $(OBJS_CLIENT) libft/libft.a -o $(CLIENT)
-
-$(SERVER):
-			make bonus -C ./libft
-			$(CC) $(CFLAGS) -c $(SRCS_SERVER)
 			$(CC) $(CFLAGS) $(OBJS_SERVER) libft/libft.a -o $(SERVER)
 
-$(CLIENT):
-			make bonus -C ./libft
-			$(CC) $(CFLAGS) -c $(SRCS_CLIENT)
-			$(CC) $(CFLAGS) $(OBJS_CLIENT) libft/libft.a -o $(CLIENT)
-
-#bonus:		all
+bonus:		all
 
 clean:
 			$(RM) $(OBJS_CLIENT)
@@ -58,7 +46,7 @@ fclean:		clean
 			$(RM) $(SERVER)
 			cd ./libft && make fclean
 
-all:		$(MINITALK)
+all:		$(CLIENT) $(SERVER)
 
 re:			fclean all
 

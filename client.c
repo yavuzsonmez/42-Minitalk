@@ -6,15 +6,19 @@
 /*   By: ysonmez <ysonmez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 11:14:12 by ysonmez           #+#    #+#             */
-/*   Updated: 2021/08/19 11:17:44 by ysonmez          ###   ########.fr       */
+/*   Updated: 2021/08/19 18:21:08 by ysonmez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-int main()
+int main(int argc, char *argv[])
 {
+	char *pid;
 
-	write(1, "HELLO\n", 6);
+	if (argc != 3)
+		return (-1);
+	pid = argv[1];
+
 	return 0;
 }
