@@ -6,7 +6,7 @@
 /*   By: ysonmez <ysonmez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 11:14:51 by ysonmez           #+#    #+#             */
-/*   Updated: 2021/08/20 14:54:41 by ysonmez          ###   ########.fr       */
+/*   Updated: 2021/08/20 19:20:52 by ysonmez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,5 @@
 
 #include <stdio.h> //to remove
 
-void	ft_putpid(void);
 
 #endif
