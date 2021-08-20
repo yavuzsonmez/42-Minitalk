@@ -6,7 +6,7 @@
 #    By: ysonmez <ysonmez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/19 11:02:47 by ysonmez           #+#    #+#              #
-#    Updated: 2021/08/19 19:29:59 by ysonmez          ###   ########.fr        #
+#    Updated: 2021/08/20 11:45:59 by ysonmez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ CLIENT			=		client
 SERVER			=		server
 
 SRCS_SERVER		=		server.c \
+						smessages.c \
 
 SRCS_CLIENT		=		client.c \
 

@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   smessages.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysonmez <ysonmez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/19 11:14:14 by ysonmez           #+#    #+#             */
-/*   Updated: 2021/08/20 12:01:05 by ysonmez          ###   ########.fr       */
+/*   Created: 2021/08/20 10:58:57 by ysonmez           #+#    #+#             */
+/*   Updated: 2021/08/20 12:01:47 by ysonmez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-int main(void)
+void	ft_putpid(void)
 {
-	ft_putpid();
-	//while(1)
-	//{
-	//	pause();
-	//}
-	return 0;
+	ft_putstr_fd("MINITALK SERVER..\n", 1);
+	ft_putstr_fd("PROCESS ID : ", 1);
+	ft_putnbr_fd(getpid(), 1);
+	ft_putchar_fd('\n', 1);
 }
