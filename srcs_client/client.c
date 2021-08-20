@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   smessages.c                                        :+:      :+:    :+:   */
+/*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysonmez <ysonmez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/20 10:58:57 by ysonmez           #+#    #+#             */
-/*   Updated: 2021/08/20 12:01:47 by ysonmez          ###   ########.fr       */
+/*   Created: 2021/08/19 11:14:12 by ysonmez           #+#    #+#             */
+/*   Updated: 2021/08/20 14:55:13 by ysonmez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "../header/minitalk.h"
 
-void	ft_putpid(void)
+int main(int argc, char *argv[])
 {
-	ft_putstr_fd("MINITALK SERVER..\n", 1);
-	ft_putstr_fd("PROCESS ID : ", 1);
-	ft_putnbr_fd(getpid(), 1);
-	ft_putchar_fd('\n', 1);
+	pid_t process_id;
+	char *str;
+
+	if (argc != 3)
+		return (-1);
+	process_id = ft_atoi(argv[1]);
+	if (process_id <= 0)
+		return (-1);
+	str = argv[2];
+	kill (process_id, SIGUSR1);
+
+	return 0;
 }

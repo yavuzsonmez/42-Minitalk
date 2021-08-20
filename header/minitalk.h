@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysonmez <ysonmez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/19 11:14:14 by ysonmez           #+#    #+#             */
-/*   Updated: 2021/08/20 12:01:05 by ysonmez          ###   ########.fr       */
+/*   Created: 2021/08/19 11:14:51 by ysonmez           #+#    #+#             */
+/*   Updated: 2021/08/20 14:54:41 by ysonmez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#ifndef MINITALK_H
 
-int main(void)
-{
-	ft_putpid();
-	//while(1)
-	//{
-	//	pause();
-	//}
-	return 0;
-}
+# define MINITALK_H
+
+# include "../libft/libft.h"
+# include <signal.h>
+
+#include <stdio.h> //to remove
+
+void	ft_putpid(void);
+
+#endif

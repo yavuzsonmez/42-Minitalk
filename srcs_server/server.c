@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysonmez <ysonmez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/19 11:14:12 by ysonmez           #+#    #+#             */
-/*   Updated: 2021/08/20 12:00:23 by ysonmez          ###   ########.fr       */
+/*   Created: 2021/08/19 11:14:14 by ysonmez           #+#    #+#             */
+/*   Updated: 2021/08/20 14:55:15 by ysonmez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "../header/minitalk.h"
 
-int main(int argc, char *argv[])
+int main(void)
 {
-	pid_t process_id;
-	char *str;
-
-	if (argc != 3)
-		return (-1);
-	process_id = ft_atoi(argv[1]);
-	if (process_id <= 0)
-		return (-1);
-	str = argv[2];
-	//kill(process_id, )
-
+	ft_putpid();
+	//while(1)
+	//{
+	//	pause();
+	//}
 	return 0;
 }

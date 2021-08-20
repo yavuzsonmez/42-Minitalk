@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   smessages.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysonmez <ysonmez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/19 11:14:51 by ysonmez           #+#    #+#             */
-/*   Updated: 2021/08/20 11:59:59 by ysonmez          ###   ########.fr       */
+/*   Created: 2021/08/20 10:58:57 by ysonmez           #+#    #+#             */
+/*   Updated: 2021/08/20 14:54:55 by ysonmez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
+#include "../header/minitalk.h"
 
-# define MINITALK_H
-
-# include "libft/libft.h"
-# include <signal.h>
-
-#include <stdio.h> //to remove
-
-void	ft_putpid(void);
-
-#endif
+void	ft_putpid(void)
+{
+	ft_putstr_fd("MINITALK SERVER..\n", 1);
+	ft_putstr_fd("PROCESS ID : ", 1);
+	ft_putnbr_fd(getpid(), 1);
+	ft_putchar_fd('\n', 1);
+}
