@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ysonmez <ysonmez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 11:14:14 by ysonmez           #+#    #+#             */
-/*   Updated: 2021/08/21 11:57:35 by ubuntu           ###   ########.fr       */
+/*   Updated: 2021/08/23 09:36:20 by ysonmez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_pid(void)
 {
-	ft_putstr_fd("\nSTARTING MINITALK SERVER ...\n", 1);
-	ft_putstr_fd("____________________________\n", 1);
+	ft_putendl_fd("\nSTARTING MINITALK SERVER ...", 1);
+	ft_putendl_fd("____________________________", 1);
 	ft_putstr_fd("\nPROCESS ID : ", 1);
 	ft_putnbr_fd(getpid(), 1);
 	ft_putchar_fd('\n', 1);
@@ -25,10 +25,14 @@ void	ft_pid(void)
 
 static void ft_print_signal(int signum)
 {
-	(void)signum;
-	ft_putstr_fd("Signal Received..\n", 1);
-	
-	
+	if (signum == SIGUSR2)
+		signum = 0;
+	else if (signum == SIGUSR1)
+		signum = 1;
+	ft_putendl_fd("Signal Received..", 1);
+	ft_putnbr_fd(signum, 1);
+
+
 }
 
 int main(void)
@@ -42,15 +46,14 @@ int main(void)
 
 	while(1)
 	{
-
 		//sigaction();
-		signal(SIGUSR1, ft_print_signal);
-		signal(SIGUSR2, ft_print_signal);
-		/*
-		if ()
-			exit(EXIT_SUCCESS);
-		*/
+		if (signal(SIGUSR1, ft_print_signal) == SIG_ERR || signal(SIGUSR2, ft_print_signal) == SIG_ERR)
+		{
+			ft_putendl_fd("An error has occurred", 1);
+			exit(EXIT_FAILURE);
+		}
 		pause();
 	}
-	return 0;
+	exit(EXIT_SUCCESS);
+	return (0);
 }
