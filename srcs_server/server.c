@@ -6,11 +6,14 @@
 /*   By: ysonmez <ysonmez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 11:14:14 by ysonmez           #+#    #+#             */
-/*   Updated: 2021/08/23 14:04:29 by ysonmez          ###   ########.fr       */
+/*   Updated: 2021/08/23 15:53:00 by ysonmez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minitalk.h"
+
+int bits;
+
 /*
 static int	ft_iterative_power(int nb, int power)
 {
@@ -45,52 +48,60 @@ void	ft_pid(void)
 	ft_putchar_fd('\n', 1);
 }
 
-//static
-
 static void ft_print_signal(int signum)
 {
 	//char *str;
+	int byte[9];
+	int i;
 
+	i = 0;
 	if (signum == SIGUSR2)
 		signum = 0;
 	else if (signum == SIGUSR1)
 		signum = 1;
 	//ft_putendl_fd("Signal Received..", 1);
 	ft_putnbr_fd(signum, 1);
+	//if (bits == 0)
+	//	str = (char *)malloc(sizeof(char) * (8 + 1));
+	//str[bits] = signum;
+	//if (bits == 8)
+	//{
+	//	str[bits] = '\0';
+	//	ft_decode(str);
+	//
+	//	free(str);
+	//}
 }
-
-
 
 int main(void)
 {
+	struct sigaction act;
+
 	ft_pid();
-	//struct sigaction action;
-//
-	//action.sa_handler = ft_print_signal();
-	//sigemptyset(&action.sa_mask);
-	//action.sa_flags = 0;
-
-	while(1)
+	//ft_memset(&act, '\0', sizeof(act));
+	sigemptyset(&act.sa_mask);
+	act.sa_handler = &ft_print_signal;
+	while (1)
 	{
-		struct sigaction act;
-
-		ft_memset(&act, '\0', sizeof(act));
-		act.sa_handler = &ft_print_signal;
-
-		if (sigaction(SIGUSR1, &act, NULL) < 0 || sigaction(SIGUSR2, &act, NULL) < 0)
+		if (sigaction(SIGUSR1, &act, NULL) < 0)
 		{
 			ft_putendl_fd("An error has occurred", 1);
 			exit(EXIT_FAILURE);
 		}
-
-		//if (!ft_strncmp(str, "exit", 5))
-		//{
-		//	ft_memfree(str);
-		//	exit(EXIT_SUCCESS);
-		//}
-		//ft_putendl_fd(str, 1);
-		//ft_memfree(str);
+		else if (sigaction(SIGUSR2, &act, NULL) < 0)
+		{
+			ft_putendl_fd("An error has occurred", 1);
+			exit(EXIT_FAILURE);
+		}
 		pause();
 	}
 	return (0);
 }
+
+//if (!ft_strncmp(str, "exit", 5))
+//{
+//	ft_memfree(str);
+//	exit(EXIT_SUCCESS);
+//}
+//ft_putendl_fd(str, 1);
+//ft_memfree(str);
