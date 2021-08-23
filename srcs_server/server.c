@@ -6,11 +6,35 @@
 /*   By: ysonmez <ysonmez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 11:14:14 by ysonmez           #+#    #+#             */
-/*   Updated: 2021/08/23 12:00:44 by ysonmez          ###   ########.fr       */
+/*   Updated: 2021/08/23 13:46:26 by ysonmez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minitalk.h"
+/*
+static int	ft_iterative_power(int nb, int power)
+{
+	int i;
+	int k;
+
+	i = 1;
+	k = nb;
+	if (power < 0)
+		return (0);
+	if (power == 1)
+		return (nb);
+	if (power == 0 && nb == 0)
+		return (1);
+	if (power == 0)
+		return (1);
+	while (i < power)
+	{
+		k = k * nb;
+		i++;
+	}
+	return (k);
+}
+*/
 
 void	ft_pid(void)
 {
@@ -25,7 +49,7 @@ void	ft_pid(void)
 
 static void ft_print_signal(int signum)
 {
-	char *str;
+	//char *str;
 
 	if (signum == SIGUSR2)
 		signum = 0;
@@ -33,9 +57,9 @@ static void ft_print_signal(int signum)
 		signum = 1;
 	//ft_putendl_fd("Signal Received..", 1);
 	ft_putnbr_fd(signum, 1);
-
-
 }
+
+
 
 int main(void)
 {
@@ -48,12 +72,17 @@ int main(void)
 
 	while(1)
 	{
-		//sigaction();
-		if (signal(SIGUSR1, ft_print_signal) == SIG_ERR || signal(SIGUSR2, ft_print_signal) == SIG_ERR)
+		struct sigaction act;
+
+		ft_memset(&act, '\0', sizeof(act));
+		act.sa_handler = &ft_print_signal;
+
+		if (sigaction(SIGUSR1, &act, NULL) < 0 || sigaction(SIGUSR2, &act, NULL) < 0)
 		{
 			ft_putendl_fd("An error has occurred", 1);
 			exit(EXIT_FAILURE);
 		}
+
 		//if (!ft_strncmp(str, "exit", 5))
 		//{
 		//	ft_memfree(str);
