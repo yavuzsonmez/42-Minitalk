@@ -6,7 +6,7 @@
 /*   By: ysonmez <ysonmez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 11:14:51 by ysonmez           #+#    #+#             */
-/*   Updated: 2021/08/23 11:33:47 by ysonmez          ###   ########.fr       */
+/*   Updated: 2021/08/23 17:39:06 by ysonmez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,11 @@
 # include <signal.h>
 
 #include <stdio.h> //to remove
+
+typedef struct s_byte
+{
+	int *arr;
+	int i;
+}	t_byte;
 
 #endif

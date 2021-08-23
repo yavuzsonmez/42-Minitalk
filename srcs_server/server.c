@@ -6,13 +6,13 @@
 /*   By: ysonmez <ysonmez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 11:14:14 by ysonmez           #+#    #+#             */
-/*   Updated: 2021/08/23 15:53:00 by ysonmez          ###   ########.fr       */
+/*   Updated: 2021/08/23 17:59:57 by ysonmez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minitalk.h"
 
-int bits;
+t_byte byte;
 
 /*
 static int	ft_iterative_power(int nb, int power)
@@ -50,27 +50,26 @@ void	ft_pid(void)
 
 static void ft_print_signal(int signum)
 {
-	//char *str;
-	int byte[9];
-	int i;
-
-	i = 0;
 	if (signum == SIGUSR2)
 		signum = 0;
 	else if (signum == SIGUSR1)
 		signum = 1;
-	//ft_putendl_fd("Signal Received..", 1);
-	ft_putnbr_fd(signum, 1);
-	//if (bits == 0)
-	//	str = (char *)malloc(sizeof(char) * (8 + 1));
-	//str[bits] = signum;
-	//if (bits == 8)
-	//{
-	//	str[bits] = '\0';
-	//	ft_decode(str);
-	//
-	//	free(str);
-	//}
+
+		/*
+	if (byte.i && byte.i == 0)
+	{
+		byte.arr = (int *)malloc(sizeof(int) * (8 + 1));
+		if (byte.arr == NULL)
+			return ;
+		byte.arr[8] = '\0';
+	}
+	byte.arr[byte.i] = signum;
+	if (byte.i == 8)
+	{
+		//ft_decode(str);
+		ft_memfree(byte.arr);
+	}
+	*/
 }
 
 int main(void)
@@ -83,16 +82,21 @@ int main(void)
 	act.sa_handler = &ft_print_signal;
 	while (1)
 	{
-		if (sigaction(SIGUSR1, &act, NULL) < 0)
+		if (sigaction(SIGUSR1, &act, NULL) < 0 || sigaction(SIGUSR2, &act, NULL) < 0)
 		{
 			ft_putendl_fd("An error has occurred", 1);
 			exit(EXIT_FAILURE);
 		}
-		else if (sigaction(SIGUSR2, &act, NULL) < 0)
+		/*
+		if (byte.arr != NULL)
 		{
-			ft_putendl_fd("An error has occurred", 1);
-			exit(EXIT_FAILURE);
+			ft_putendl_fd("Signal Received..", 1);
+			ft_putnbr_fd(byte.arr[0], 1);
+			ft_putnbr_fd(byte.arr[1], 1);
+			ft_putnbr_fd(byte.arr[2], 1);
+			ft_putnbr_fd(byte.arr[3], 1);
 		}
+		*/
 		pause();
 	}
 	return (0);
