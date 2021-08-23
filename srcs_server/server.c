@@ -6,7 +6,7 @@
 /*   By: ysonmez <ysonmez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 11:14:14 by ysonmez           #+#    #+#             */
-/*   Updated: 2021/08/23 09:36:20 by ysonmez          ###   ########.fr       */
+/*   Updated: 2021/08/23 12:00:44 by ysonmez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,13 @@ void	ft_pid(void)
 
 static void ft_print_signal(int signum)
 {
+	char *str;
+
 	if (signum == SIGUSR2)
 		signum = 0;
 	else if (signum == SIGUSR1)
 		signum = 1;
-	ft_putendl_fd("Signal Received..", 1);
+	//ft_putendl_fd("Signal Received..", 1);
 	ft_putnbr_fd(signum, 1);
 
 
@@ -52,8 +54,14 @@ int main(void)
 			ft_putendl_fd("An error has occurred", 1);
 			exit(EXIT_FAILURE);
 		}
+		//if (!ft_strncmp(str, "exit", 5))
+		//{
+		//	ft_memfree(str);
+		//	exit(EXIT_SUCCESS);
+		//}
+		//ft_putendl_fd(str, 1);
+		//ft_memfree(str);
 		pause();
 	}
-	exit(EXIT_SUCCESS);
 	return (0);
 }
