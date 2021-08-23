@@ -6,7 +6,7 @@
 /*   By: ysonmez <ysonmez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 11:14:14 by ysonmez           #+#    #+#             */
-/*   Updated: 2021/08/23 13:46:26 by ysonmez          ###   ########.fr       */
+/*   Updated: 2021/08/23 14:04:29 by ysonmez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ static int	ft_iterative_power(int nb, int power)
 
 void	ft_pid(void)
 {
-	ft_putendl_fd("\nSTARTING MINITALK SERVER ...", 1);
+	ft_putendl_fd("\nStarting Minitalk server...", 1);
 	ft_putendl_fd("____________________________", 1);
-	ft_putstr_fd("\nPROCESS ID : ", 1);
+	ft_putstr_fd("\nProcess ID : ", 1);
 	ft_putnbr_fd(getpid(), 1);
 	ft_putchar_fd('\n', 1);
 }

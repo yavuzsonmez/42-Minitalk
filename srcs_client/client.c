@@ -6,21 +6,21 @@
 /*   By: ysonmez <ysonmez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 11:14:12 by ysonmez           #+#    #+#             */
-/*   Updated: 2021/08/23 13:59:15 by ysonmez          ###   ########.fr       */
+/*   Updated: 2021/08/23 14:08:56 by ysonmez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minitalk.h"
 
-
-static int ft_error(void)
+static int	ft_error(void)
 {
-	ft_putendl_fd("ERROR", 1);
-	ft_putendl_fd("./client [server_pid] [string]", 1);
+	ft_putendl_fd("An error has occurred", 1);
+	ft_putendl_fd("Make sure that server is launched: ./server", 1);
+	ft_putendl_fd("Launch client: ./client [server_pid] [string]", 1);
 	return (0);
 }
 
-static void ft_encode(char *str, pid_t pid)
+static void	ft_encode(char *str, pid_t pid)
 {
 	size_t	i;
 	size_t	bits;
@@ -42,8 +42,7 @@ static void ft_encode(char *str, pid_t pid)
 	}
 }
 
-
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	pid_t	pid;
 
@@ -57,12 +56,10 @@ int main(int argc, char *argv[])
 	ft_putnbr_fd((unsigned char)argv[2][0], 1);
 	ft_putchar_fd('\n', 1);
 	/* END TEST */
-	ft_putstr_fd("Sending signal to : ", 1);
+
+	ft_putstr_fd("Sending data to : ", 1);
 	ft_encode(argv[2], pid);
-
 	ft_putnbr_fd(pid, 1);
-	ft_putendl_fd(" ...", 1);
-
-
-	return 0;
+	ft_putendl_fd("...", 1);
+	return (0);
 }
