@@ -6,7 +6,7 @@
 /*   By: ysonmez <ysonmez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 11:14:12 by ysonmez           #+#    #+#             */
-/*   Updated: 2021/08/25 15:38:36 by ysonmez          ###   ########.fr       */
+/*   Updated: 2021/08/25 17:04:38 by ysonmez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,12 @@ static int	ft_error(void)
 	return (0);
 }
 
-
-static void ft_handler(int signum)
+static void	ft_handler(int signum)
 {
 	(void)signum;
 	ft_putendl_fd("Signal Received !", 1);
 	exit(EXIT_SUCCESS);
 }
-
 
 static void	ft_encode(char *str, pid_t pid)
 {
@@ -44,15 +42,9 @@ static void	ft_encode(char *str, pid_t pid)
 		{
 			bits--;
 			if (((unsigned char)str[i] >> bits & 1) == 1)
-			{
-				ft_putnbr_fd(1, 1);
 				kill(pid, SIGUSR1);
-			}
 			else if (((unsigned char)str[i] >> bits & 1) == 0)
-			{
-				ft_putnbr_fd(0, 1);
 				kill(pid, SIGUSR2);
-			}
 			usleep(100);
 		}
 		i++;
@@ -80,7 +72,6 @@ int	main(int argc, char *argv[])
 		}
 		ft_encode(argv[2], pid);
 		pause();
-
 	}
 	return (0);
 }

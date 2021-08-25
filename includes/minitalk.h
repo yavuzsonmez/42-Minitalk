@@ -6,7 +6,7 @@
 /*   By: ysonmez <ysonmez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 11:14:51 by ysonmez           #+#    #+#             */
-/*   Updated: 2021/08/24 12:34:58 by ysonmez          ###   ########.fr       */
+/*   Updated: 2021/08/25 17:04:51 by ysonmez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,5 @@
 
 # include "../libft/libft.h"
 # include <signal.h>
-
-#include <stdio.h> //to remove
 
 #endif

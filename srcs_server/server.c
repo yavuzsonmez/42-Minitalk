@@ -6,7 +6,7 @@
 /*   By: ysonmez <ysonmez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 11:14:14 by ysonmez           #+#    #+#             */
-/*   Updated: 2021/08/25 15:58:40 by ysonmez          ###   ########.fr       */
+/*   Updated: 2021/08/25 17:03:31 by ysonmez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static void	ft_print_signal(int sig, siginfo_t *info, void *context)
 		size = 8;
 	size--;
 	c += (sig & 1) << size;
-	//ft_putnbr_fd(sig, 1);
 	if (size == 0)
 	{
 		if (!c)
