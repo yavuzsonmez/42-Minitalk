@@ -6,7 +6,7 @@
 /*   By: ysonmez <ysonmez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 11:14:12 by ysonmez           #+#    #+#             */
-/*   Updated: 2021/08/25 11:20:06 by ysonmez          ###   ########.fr       */
+/*   Updated: 2021/08/25 15:38:36 by ysonmez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,20 @@ static void	ft_encode(char *str, pid_t pid)
 	len = ft_strlen(str);
 	while (i <= len)
 	{
-		bits = 7;
+		bits = 8;
 		while (bits != 0)
 		{
 			bits--;
 			if (((unsigned char)str[i] >> bits & 1) == 1)
+			{
+				ft_putnbr_fd(1, 1);
 				kill(pid, SIGUSR1);
+			}
 			else if (((unsigned char)str[i] >> bits & 1) == 0)
+			{
+				ft_putnbr_fd(0, 1);
 				kill(pid, SIGUSR2);
+			}
 			usleep(100);
 		}
 		i++;

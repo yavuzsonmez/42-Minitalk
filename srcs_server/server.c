@@ -6,7 +6,7 @@
 /*   By: ysonmez <ysonmez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 11:14:14 by ysonmez           #+#    #+#             */
-/*   Updated: 2021/08/25 11:23:12 by ysonmez          ###   ########.fr       */
+/*   Updated: 2021/08/25 15:58:40 by ysonmez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	ft_pid(void)
 
 static void	ft_print_signal(int sig, siginfo_t *info, void *context)
 {
-	static char		c;
-	static size_t	size;
+	static unsigned char	c;
+	static size_t			size;
 
 	(void)context;
 	if (sig == SIGUSR2)
@@ -32,9 +32,10 @@ static void	ft_print_signal(int sig, siginfo_t *info, void *context)
 	else if (sig == SIGUSR1)
 		sig = 1;
 	if (c == 0 && size == 0)
-		size = 7;
+		size = 8;
 	size--;
 	c += (sig & 1) << size;
+	//ft_putnbr_fd(sig, 1);
 	if (size == 0)
 	{
 		if (!c)
@@ -43,7 +44,7 @@ static void	ft_print_signal(int sig, siginfo_t *info, void *context)
 			kill(info->si_pid, SIGUSR1);
 		}
 		ft_putchar_fd(c, 1);
-		size = 7;
+		size = 8;
 		c = 0;
 	}
 }
