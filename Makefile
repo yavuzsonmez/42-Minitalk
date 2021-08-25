@@ -32,10 +32,7 @@ CFLAGS			=		-Wall -Werror -Wextra
 
 RM				=		rm -f
 
-$(NAME)			: 		$(OBJS_CLIENT) $(OBJS_SERVER)
-						$(LIB)
-						$(CC) $(CFLAGS) $(OBJS_CLIENT) libft/libft.a -o $(CLIENT)
-						$(CC) $(CFLAGS) $(OBJS_SERVER) libft/libft.a -o $(SERVER)
+$(NAME)			: 		$(SERVER) $(CLIENT)
 
 server			:		$(OBJS_SERVER)
 						$(LIB)
@@ -60,4 +57,4 @@ all				:		$(NAME)
 
 re				:		fclean all
 
-.PHONY			:		clean fclean all re bonus server client minitalk
+.PHONY			:		clean fclean all re bonus
