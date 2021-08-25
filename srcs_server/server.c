@@ -6,7 +6,7 @@
 /*   By: ysonmez <ysonmez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 11:14:14 by ysonmez           #+#    #+#             */
-/*   Updated: 2021/08/25 10:48:34 by ysonmez          ###   ########.fr       */
+/*   Updated: 2021/08/25 11:23:12 by ysonmez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	main(void)
 	struct sigaction	act;
 
 	ft_pid();
-	ft_memset (&act, '\0', sizeof(act));
+	ft_memset(&act, '\0', sizeof(act));
 	sigemptyset(&act.sa_mask);
 	act.sa_sigaction = ft_print_signal;
 	act.sa_flags = SA_SIGINFO;

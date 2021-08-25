@@ -6,7 +6,7 @@
 /*   By: ysonmez <ysonmez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 11:14:12 by ysonmez           #+#    #+#             */
-/*   Updated: 2021/08/25 10:52:41 by ysonmez          ###   ########.fr       */
+/*   Updated: 2021/08/25 11:20:06 by ysonmez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static int	ft_error(void)
 static void ft_handler(int signum)
 {
 	(void)signum;
+	ft_putendl_fd("Signal Received !", 1);
+	exit(EXIT_SUCCESS);
 }
 
 
@@ -54,37 +56,25 @@ static void	ft_encode(char *str, pid_t pid)
 int	main(int argc, char *argv[])
 {
 	pid_t	pid;
-	size_t	send;
 
-	send = 0;
 	if (argc != 3 && !ft_error())
 		return (-1);
 	pid = ft_atoi(argv[1]);
 	if (pid < 1 && !ft_error())
 		return (-1);
-	/*TEST*/
-	ft_putnbr_fd(getpid(), 1);
-	ft_putchar_fd('\n', 1);
-	/*END TEST*/
 	ft_putstr_fd("Sending data to : ", 1);
 	ft_putnbr_fd(pid, 1);
 	ft_putendl_fd("..", 1);
-
-	while(1)
+	while (1)
 	{
-		if (send == 0)
-		{
-			ft_encode(argv[2], pid);
-			send++;
-		}
-		pause();
 		if (signal(SIGUSR1, ft_handler) < 0)
 		{
 			ft_putendl_fd("An error has occurred", 1);
 			exit(EXIT_FAILURE);
 		}
-		ft_putendl_fd("Signal Received !", 1);
-		exit(EXIT_SUCCESS);
+		ft_encode(argv[2], pid);
+		pause();
+
 	}
 	return (0);
 }
