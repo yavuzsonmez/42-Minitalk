@@ -6,7 +6,7 @@
 /*   By: ysonmez <ysonmez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 11:14:14 by ysonmez           #+#    #+#             */
-/*   Updated: 2021/08/25 10:10:05 by ysonmez          ###   ########.fr       */
+/*   Updated: 2021/08/25 10:48:34 by ysonmez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static void	ft_print_signal(int sig, siginfo_t *info, void *context)
 		sig = 0;
 	else if (sig == SIGUSR1)
 		sig = 1;
-	ft_putnbr_fd(sig, 1);
 	if (c == 0 && size == 0)
 		size = 7;
 	size--;
@@ -39,12 +38,14 @@ static void	ft_print_signal(int sig, siginfo_t *info, void *context)
 	if (size == 0)
 	{
 		if (!c)
+		{
 			ft_putchar_fd('\n', 1);
+			kill(info->si_pid, SIGUSR1);
+		}
 		ft_putchar_fd(c, 1);
 		size = 7;
 		c = 0;
 	}
-	kill(SIGUSR1, info->si_pid);
 }
 
 int	main(void)
@@ -56,7 +57,6 @@ int	main(void)
 	sigemptyset(&act.sa_mask);
 	act.sa_sigaction = ft_print_signal;
 	act.sa_flags = SA_SIGINFO;
-
 	while (1)
 	{
 		if (sigaction(SIGUSR1, &act, NULL) < 0
